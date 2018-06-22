@@ -1,10 +1,14 @@
 #!/bin/sh
 
+end=$((SECONDS+600))
 : ${SLEEP_PERIOD:=2}
 
 wait_for() {
   echo Waiting for $1 to listen on $2...
-  while ! nc -z $1 $2; do echo sleeping; sleep $SLEEP_PERIOD; done
+  while [[ ! nc -z $1 $2 ]] && [[ $SECONDS -lt $end ]];
+    do echo sleeping;
+    sleep $SLEEP_PERIOD;
+  done
 }
 
 url=$(echo $1 | awk -F/ '{print $3}')
