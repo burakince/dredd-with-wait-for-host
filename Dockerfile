@@ -1,4 +1,4 @@
-FROM burakince/docker-dredd:5.1.10
+FROM burakince/docker-dredd:5.1.11
 
 LABEL maintainer="Burak Ince <burak.ince@linux.org.tr>"
 

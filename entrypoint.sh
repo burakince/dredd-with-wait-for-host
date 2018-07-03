@@ -4,9 +4,10 @@ end=$((SECONDS+600))
 : ${SLEEP_PERIOD:=2}
 
 wait_for() {
-  echo Waiting for $1 to listen on $2...
+  echo "Waiting for $1 to listen on $2...";
   while [[ ! nc -z $1 $2 ]] && [[ $SECONDS -lt $end ]];
-    do echo sleeping;
+  do
+    echo "Sleeping. Waiting for $1 to listen on $2...";
     sleep $SLEEP_PERIOD;
   done
 }
