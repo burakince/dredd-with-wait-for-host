@@ -8,5 +8,4 @@ RUN apk add --update netcat-openbsd \
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-
-CMD ["dredd"]
+CMD []
