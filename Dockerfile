@@ -1,11 +1,14 @@
-FROM burakince/docker-dredd:5.1.11
+ARG DREDD_VERSION=14.1.0
+
+FROM burakince/docker-dredd:${DREDD_VERSION}
 
 LABEL maintainer="Burak Ince <burak.ince@linux.org.tr>"
 
-RUN apk add --update netcat-openbsd \
-  && rm -rf /var/cache/apk/*
+RUN apt-get update && apt-get install -y \
+  netcat \
+  && rm -rf /var/lib/apt/lists/*
 
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY entrypoint.sh /usr/app/entrypoint.sh
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["/usr/app/entrypoint.sh"]
 CMD []
